@@ -1,14 +1,17 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { MapPin, Star, Users, Wifi, Coffee, Check, ArrowRight, Phone } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { MapPin, Star, Users, Wifi, Coffee, Check, ArrowRight, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import RoomCard from "@/components/RoomCard";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import StatsSection from "@/components/StatsSection";
+import FacilitiesSection from "@/components/FacilitiesSection";
+import NewsletterSection from "@/components/NewsletterSection";
 
 const roomsData = [
   {
@@ -80,7 +83,7 @@ const Index = () => {
       
       <HeroSection />
       
-      {/* Rooms Section */}
+      {/* Featured Rooms Section */}
       <section id="rooms" className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
         <div className="mb-12 text-center">
           <Badge variant="secondary" className="mb-2">Our Accommodations</Badge>
@@ -105,6 +108,12 @@ const Index = () => {
           </Button>
         </div>
       </section>
+      
+      {/* Stats Section */}
+      <StatsSection />
+      
+      {/* Facilities Section */}
+      <FacilitiesSection />
       
       {/* Features Section */}
       <section className="py-16 px-4 md:px-8 bg-muted">
@@ -137,6 +146,12 @@ const Index = () => {
           </div>
         </div>
       </section>
+      
+      {/* Testimonials Section */}
+      <TestimonialsSection />
+      
+      {/* Newsletter Section */}
+      <NewsletterSection />
       
       {/* CTA Section */}
       <section className="py-16 px-4 md:px-8 bg-primary/5">

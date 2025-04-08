@@ -2,11 +2,18 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowDown } from "lucide-react";
 
 const HeroSection = () => {
+  const scrollToRooms = () => {
+    const roomsElement = document.getElementById('rooms');
+    if (roomsElement) {
+      roomsElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="relative min-h-[90vh] flex items-center bg-gradient-to-r from-primary/5 to-secondary/5">
+    <section className="relative min-h-[100vh] flex items-center bg-gradient-to-r from-primary/5 to-secondary/5 overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 z-0 opacity-30">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -17,6 +24,32 @@ const HeroSection = () => {
           </defs>
           <rect width="100%" height="100%" fill="url(#grid)" />
         </svg>
+      </div>
+      
+      {/* Animated floating elements */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {[...Array(5)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-primary/5"
+            style={{
+              width: Math.random() * 300 + 50,
+              height: Math.random() * 300 + 50,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, Math.random() * 30 - 15],
+              x: [0, Math.random() * 30 - 15],
+              scale: [1, Math.random() * 0.2 + 0.9],
+            }}
+            transition={{
+              repeat: Infinity,
+              repeatType: "reverse",
+              duration: Math.random() * 10 + 10,
+            }}
+          />
+        ))}
       </div>
       
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
@@ -37,10 +70,15 @@ const HeroSection = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button asChild size="lg" className="gap-2">
+                <Button asChild size="lg" className="group">
                   <Link to="/rooms">
                     Book Now
-                    <ArrowRight className="h-4 w-4" />
+                    <motion.span
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </motion.span>
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
@@ -102,6 +140,23 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+      
+      {/* Scroll indicator */}
+      <motion.div 
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          onClick={scrollToRooms}
+          className="rounded-full border border-primary/20 bg-primary/5 backdrop-blur-sm"
+          aria-label="Scroll down"
+        >
+          <ArrowDown className="h-5 w-5 text-primary" />
+        </Button>
+      </motion.div>
       
       <div className="absolute bottom-0 left-0 right-0">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">

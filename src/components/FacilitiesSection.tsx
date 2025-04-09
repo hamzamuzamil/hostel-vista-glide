@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { 
   Wifi, Coffee, Utensils, UtensilsCrossed, 
-  Music, Lock, Shower, BookOpen, Tv
+  Music, Lock, Bath, BookOpen, Tv
 } from "lucide-react";
 import { 
   HoverCard,
@@ -49,7 +49,7 @@ const facilities: Facility[] = [
   },
   {
     name: "Modern Bathrooms",
-    icon: Shower,
+    icon: Bath,
     description: "Clean, modern bathroom facilities with hot water 24/7"
   },
   {
